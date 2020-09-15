@@ -33,9 +33,9 @@
     text-decoration: none;
     background-color: #fff;
     position: relative;
-    padding: 0px 20px 10px 20px;
+    padding: 0 20px 10px 20px;
 }
 
-.Drawer ul li a:hover, .acrive {
+.Drawer ul li a:hover, .active {
     opacity: .7;
 }

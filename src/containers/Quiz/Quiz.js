@@ -92,6 +92,11 @@ class Quiz extends React.Component {
             results: {}
         })
     }
+
+    componentDidMount() {
+        console.log('Quiz id = ',this.props.match.params.id)
+    }
+
     render() {
         return (
             <div className={classes.Quiz}>
