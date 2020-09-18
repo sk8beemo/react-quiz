@@ -13,7 +13,7 @@ export default class Auth extends React.Component {
               value: '',
               type: 'email',
               label: 'Email',
-              errorMesage: 'Введите валидный email',
+              errorMessage: 'Введите валидный email',
               valid: false,
               touched: false,
               validation: {
@@ -25,7 +25,7 @@ export default class Auth extends React.Component {
               value: '',
               type: 'password',
               label: 'Пароль',
-              errorMesage: 'Неверный пароль',
+              errorMessage: 'Неверный пароль',
               valid: false,
               touched: false,
               validation: {
