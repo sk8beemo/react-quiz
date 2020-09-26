@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 import classes from './Auth.module.css'
 import Button from '../../components/UI/Button/Button'
 import Input from "../../components/UI/Input/Input";
@@ -36,13 +37,39 @@ export default class Auth extends React.Component {
       }
     }
 
-    loginHandler = () => {
+    loginHandler = async () => {
+        const authData = {
+            email: this.state.formControls.email.value,
+            password: this.state.formControls.password.value,
+            returnSecureToken: true
+        }
+        try {
+            const response = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAXwXstP9q2VjMk5a8yiGfsurRTOzo9ee4', authData)
+
+            console.log(response.data)
+        } catch(error){
+            console.log(error)
+        }
     }
 
-    registerHandler = () => {
+    registerHandler = async () => {
+        console.log(this.state.formControls.email.value)
+        const authData = {
+            email: this.state.formControls.email.value,
+            password: this.state.formControls.password.value,
+            returnSecureToken: true
+        }
+        try {
+            const response = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAXwXstP9q2VjMk5a8yiGfsurRTOzo9ee4', authData)
+
+            console.log(response.data)
+        } catch(error){
+            console.log(error)
+        }
     }
 
-    submitHandler = () => {
+    submitHandler = event => {
+        event.preventDefault()
     }
 
     validateControl(value, validation) {
@@ -88,7 +115,6 @@ export default class Auth extends React.Component {
     renderInputs() {
         return Object.keys(this.state.formControls).map((controlName, index) => {
             const control = this.state.formControls[controlName]
-            console.log(control)
             return (
                 <Input
                     key={controlName + index}
@@ -113,19 +139,23 @@ export default class Auth extends React.Component {
 
                     <form onSubmit={this.submitHandler} className={classes.AuthForm}>
 
-                        {this.renderInputs()}
+                        { this.renderInputs() }
 
                         <Button
                             type="success"
-                            onclick={this.loginHandler}
+                            onClick={this.loginHandler}
                             disabled={!this.state.isFormValid}
                         >
-                            Войти</Button>
+                            Войти
+                        </Button>
+
                         <Button
                             type="primary"
-                            onclick={this.registerHandler}
+                            onClick={this.registerHandler}
                             disabled={!this.state.isFormValid}
-                        >Зарегистрироваться</Button>
+                        >
+                            Зарегистрироваться
+                        </Button>
                     </form>
                 </div>
             </div>
